@@ -1,0 +1,21 @@
+name: py35
+channels:
+  - rdkit
+  - conda-forge
+
+dependencies:
+  - keras
+  - tensorflow
+  - h5py
+  - hdf5
+  - pandas
+  - python=3.5
+  - scikit-learn
+  - boost
+  - rdkit
+  - yaml
+  - numpy
+  - matplotlib
+
+
+

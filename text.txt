@@ -1,0 +1,22 @@
+
+net = block(input, 32, istraining=istraining, name='Block_1')
+net = block(net, 64, istraining=istraining, name='Block_2')
+net = block(net, 128, istraining=istraining, name='Block_3')
+net = block(net, 256, istraining=istraining, num_layers=3 ,name='Block_4')
+
+
+net = tf.layers.flatten(net)
+
+with tf.variable_scope('_dense_1'):
+    net = tf.layers.dense(net, 256)
+    net = tf.layers.batch_normalization(net, renorm=True, training=istraining)
+    net = tf.nn.relu(net)
+    net = tf.layers.dropout(net, training=istraining)
+
+with tf.variable_scope('_dense_2'):
+    net = tf.layers.dense(net, 256)
+    net = tf.layers.batch_normalization(net, renorm=True, training=istraining)
+    net = tf.nn.relu(net)
+    net = tf.layers.dropout(net, training=istraining)
+
+logits = tf.layers.dense(net, self.no_classes, activation=None, name='output')
